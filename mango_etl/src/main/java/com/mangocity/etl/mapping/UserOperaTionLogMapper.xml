@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">  
+<mapper namespace="com.mangocity.etl.dao.UserOperaTionLogMapper" >  
+  
+    <resultMap type="com.mangocity.etl.vo.UserOperaTionLogVo" id="userOperaTionLogMap">  
+        <id property="sourcerowid" column="sourcerowid"/>  
+        <result property="channel" column="channel"/>  
+        <result property="operationtype" column="operationtype"/>  
+        <result property="mbrid" column="mbrid"/>  
+        <result property="sessionid" column="sessionid"/>  
+        <result property="mangouid" column="mangouid"/>  
+        <result property="pvurl" column="pvurl"/>  
+        <result property="ipaddr" column="ipaddr"/>  
+        <result property="cityname" column="cityname"/>  
+        <result property="postcode" column="postcode"/>  
+        <result property="operationdt" column="operationdt" />  
+        <result property="language" column="language"/>  
+        <result property="browermodel" column="browermodel"/>  
+        <result property="systemmodel" column="systemmodel"/>  
+        <result property="screenresolution" column="screenresolution"/>  
+        <result property="businesschannel" column="businesschannel"/>  
+        <result property="searchinpumethod" column="searchinpumethod"/> 
+        <result property="searchinputtype" column="searchinputtype"/> 
+        <result property="searchkeywords" column="searchkeywords"/> 
+        <result property="reqparam" column="reqparam"/> 
+        <result property="searchpath" column="searchpath"/> 
+        <result property="searchstarttime" column="searchstarttime"/> 
+        <result property="searchendtime" column="searchendtime"/> 
+        <result property="searchresnum" column="searchresnum"/> 
+        <result property="searchresstatus" column="searchresstatus"/> 
+        <result property="goodsnumber" column="goodsnumber"/> 
+        <result property="ordernumber" column="ordernumber"/> 
+        <result property="orderserviceline" column="orderserviceline"/> 
+        <result property="ordertotal" column="ordertotal"/> 
+        <result property="clickid" column="clickid"/> 
+        <result property="clickhref" column="clickhref"/> 
+        <result property="reqsourcetype" column="reqsourcetype"/> 
+        <result property="currentpagearea" column="currentpagearea"/> 
+        <result property="refer" column="refer"/> 
+        <result property="refsubdomain" column="refsubdomain"/> 
+        <result property="refmaindomain" column="refmaindomain"/> 
+        <result property="sid" column="sid"/> 
+        <result property="searchword" column="searchword"/> 
+        <result property="camid" column="camid"/> 
+        <result property="adgid" column="adgid"/> 
+        <result property="kwid" column="kwid"/> 
+        <result property="utm_term" column="utm_term"/> 
+        <result property="ctvid" column="ctvid"/> 
+        <result property="utm_content" column="utm_content"/> 
+        <result property="place" column="place"/> 
+        <result property="utm_source" column="utm_source"/> 
+        <result property="utm_medium" column="utm_medium"/> 
+        <result property="landon_url" column="landon_url"/> 
+        <result property="usercookieall" column="usercookieall"/> 
+        <result property="pvurlsubdomain" column="pvurlsubdomain"/> 
+        <result property="clickhrefbase" column="clickhrefbase"/> 
+        <result property="productid" column="productid"/> 
+        <result property="sourcerowcreatedt" column="sourcerowcreatedt"/> 
+        <result property="pagename" column="pagename"/> 
+        <result property="viewid" column="viewid"/> 
+        <result property="viewname" column="viewname"/>
+        <result property="machinetype" column="machinetype"/>
+        <result property="systemversionnum" column="systemversionnum"/>
+        <result property="operationdescription" column="operationdescription"/>
+        <result property="longitude" column="longitude"/>
+        <result property="latitude" column="latitude"/>
+        <result property="webpagetypeid" column="webpagetypeid"/>
+        <result property="softwareversion" column="softwareversion"/>
+        <result property="deviceid" column="deviceid"/>
+        <result property="devicebrand" column="devicebrand"/>
+        <result property="ordercreationstatus" column="ordercreationstatus"/>
+        <result property="ordertype" column="ordertype"/>
+        <result property="localphoneIntger" column="localphoneIntger"/>
+        <result property="eventviewtype" column="eventviewtype"/>
+        <result property="eventtype" column="eventtype"/>
+        <result property="eventname" column="eventname"/>
+        <result property="eventpagename" column="eventpagename"/>
+        <result property="eventmodule" column="eventmodule"/>
+        <result property="operationday" column="operationday"/>
+        <result property="etl_load_tag" column="etl_load_tag"/>
+        <result property="etl_insert_dt" column="etl_insert_dt"/>
+        <result property="etl_update_dt" column="etl_update_dt"/>
+        <result property="still_time" column="still_time"/>
+        <result property="focus_time" column="focus_time"/>
+        <result property="user_agent" column="user_agent"/>
+        <result property="color_depth" column="color_depth"/>
+        <result property="ms" column="ms"/>
+        <result property="tile" column="tile"/>
+        <result property="operation_ms" column="operation_ms"/>
+    </resultMap>  
+        
+    <!-- 查询所有 -->  
+    <select id="findAll" resultType="com.mangocity.etl.vo.UserOperaTionLogVo" resultMap="userOperaTionLogMap">  
+        <![CDATA[  
+            SELECT * from lz.LZ_USEROPERATIONLOG
+        ]]>    
+    </select>  
+    
+    <!-- 按条件查询 -->
+    <select id="findById" parameterType="int" resultType="com.mangocity.etl.vo.UserOperaTionLogVo">
+         select * from lz.LZ_USEROPERATIONLOG  where sourcerowid = #{sourcerowid}
+    </select>
+    
+    <!-- 根据渠道查询 -->
+    <select id="findByChannel" parameterType="string" resultMap="userOperaTionLogMap">
+        select * from lz.LZ_USEROPERATIONLOG where channel = #{channel}
+    </select>
+    
+    <!-- 按条件查询 -->
+    <select id="find" parameterType="com.mangocity.etl.vo.UserOperaTionLogVo" resultMap="userOperaTionLogMap">
+        select * from lz.LZ_USEROPERATIONLOG 
+        <where>
+        <if test="channel!=null">
+            and channel = #{channel}
+        </if>
+        <if test="sourcerowid!=null">
+            and sourcerowid &gt; #{sourcerowid}
+        </if>
+        </where>
+    </select>
+    
+    <select id="findCount" parameterType="com.mangocity.etl.vo.UserOperaTionLogVo" resultType="int">
+        select count(*) from lz.LZ_USEROPERATIONLOG 
+        <where>
+        <if test="channel!=null">
+            and channel = #{channel}
+        </if>
+        <if test="sourcerowid!=null">
+            and sourcerowid &gt; #{sourcerowid}
+        </if>
+        </where>
+    </select>
+    
+    <select id="findPageBySourcerowid" parameterType="java.util.Map" resultMap="userOperaTionLogMap">
+        select * from lz.LZ_USEROPERATIONLOG 
+        <where>
+        <if test="channel!=null">
+            and channel = #{channel}
+        </if>
+        <if test="operationtype!=null">
+            and operationtype = ${operationtype}
+        </if>
+        <if test="currentRowId!=null">
+             and sourcerowid &gt; #{currentRowId} 
+        </if>
+        <if test="nextRowId!=null">
+             and sourcerowid &lt;= #{nextRowId} 
+        </if>
+        </where>
+    </select>
+    
+    <select id="findPageByRowNum" parameterType="java.util.Map" resultMap="userOperaTionLogMap">
+        select * from
+       	   (select t.*,rownum rn from 
+          		(select * from lz.LZ_USEROPERATIONLOG where channel = #{channel} order by sourcerowid asc) t 
+          	where rownum &lt;= #{nextRowId} ) 
+        where rn &gt; #{currentRowId}
+    </select>
+
+	<!-- 查询最大sourcerowid -->
+    <select id="findMaxSourceRowIdByChannel" parameterType="com.mangocity.etl.vo.UserOperaTionLogVo" resultType="int">
+        select MAX(sourcerowid)  from lz.LZ_USEROPERATIONLOG where channel = #{channel}
+    </select>
+    
+    <select id="findMaxSourceRowId" parameterType="com.mangocity.etl.vo.UserOperaTionLogVo" resultType="int">
+        select MAX(sourcerowid)  from lz.LZ_USEROPERATIONLOG
+    </select>
+    
+    	<!-- 查询最小sourcerowid -->
+    <select id="findMinSourceRowIdByChannel" parameterType="com.mangocity.etl.vo.UserOperaTionLogVo" resultType="int">
+        select MIN(sourcerowid)  from lz.LZ_USEROPERATIONLOG where channel = #{channel}
+    </select>
+       
+       
+</mapper>  

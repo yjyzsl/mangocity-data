@@ -1,0 +1,9 @@
+[viewName, originalInfo, accountName, sourcerowid,  systemModel, data,  pageName, type, deviceId, version, searchPath, lastedInfo, time, 
+, businessChannel, brand, createOrderStruts, language, cityName, Latitude, channel, eventType, eventName
+searchInputType, screenResolution, Longitude,orderTotal, sid, searchKeyWords, module, viewID, machineType, orderType, searchResStatus, searchResNum, reqParam, viewType, localNumber, 
+productId;productID,
+goodsNumber;goodsNumbers,
+systemVersion;systemVersionNum,
+orderNumber;orderNumbers,
+memberid;mbrId,
+]

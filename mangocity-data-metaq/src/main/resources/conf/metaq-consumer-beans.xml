@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="
+	http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+	http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+	http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd"
+	default-autowire="byName" default-lazy-init="false">
+	
+	<context:component-scan base-package="com.mangocity.data.metaq" />
+
+	<bean id="propertyConfigurer"
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<list>
+				<value>classpath:conf/metaq.properties</value>
+			</list>
+		</property>
+	</bean>
+	
+	<context:property-placeholder location="classpath:conf/metaq.properties" />
+
+	<!-- message session factory -->
+	<bean id="sessionFactory"
+		class="com.taobao.metamorphosis.client.extension.spring.MetaqMessageSessionFactoryBean">
+		<property name="zkConnect" value="${zkConnect}" />
+		<property name="zkSessionTimeoutMs" value="${zkSessionTimeoutMs}" />
+		<property name="zkConnectionTimeoutMs" value="${zkConnectionTimeoutMs}" />
+		<property name="zkSyncTimeMs" value="${zkSyncTimeMs}" />
+	</bean>
+
+	<!-- message body converter using java serialization. -->
+	<!-- <bean id="messageBodyConverter" class="com.taobao.metamorphosis.client.extension.spring.JavaSerializationMessageBodyConverter" />-->
+	<bean id="messageBodyConverter" class="com.mangocity.data.metaq.StringMessageBodyConverter" />
+	
+
+	<!-- template to send messages. -->
+	<bean id="metaqTemplate" class="com.taobao.metamorphosis.client.extension.spring.MetaqTemplate">
+		<property name="messageSessionFactory" ref="sessionFactory" />
+		<property name="messageBodyConverter" ref="messageBodyConverter" />
+	</bean>
+	
+
+	<!-- message listener -->
+	<bean id="stringMessageListener" class="com.mangocity.data.metaq.listener.StringMessageListener">
+		<!-- threads to process these messages. -->
+		<property name="processThreads" value="${processThreads}" />
+	</bean>
+
+	<!-- topics to be subscribed. -->
+	<bean id="metaTopic" class="com.taobao.metamorphosis.client.extension.spring.MetaqTopic">
+		<!-- consumer group -->
+		<property name="group" value="${topicGroup}" />
+		<!-- topic -->
+		<property name="topic" value="${topicName}" />
+		<!-- max buffer size to fetch messages -->
+		<property name="maxBufferSize" value="${topicMaxBufferSize}" />
+	</bean>
+
+	<!-- listener container to subscribe topics -->
+	<bean id="listenerContainer" class="com.taobao.metamorphosis.client.extension.spring.MessageListenerContainer">
+		<property name="messageSessionFactory" ref="sessionFactory" />
+		<property name="messageBodyConverter" ref="messageBodyConverter" />
+		<property name="subscribers">
+			<map>
+				<entry key-ref="metaTopic" value-ref="stringMessageListener" />
+			</map>
+		</property>
+	</bean>
+	
+	<bean id="consumerDataManager" class="com.mangocity.data.metaq.handler.ConsumerDataManager">
+		<property name="handlerThreadNum" value="${handlerThreadNum}"/>
+		<property name="consumerDataServiceMap">
+			<map>
+				<entry key="web" value-ref="uOALConsumerDataServiceImpl"/>
+			</map>
+		</property>
+	</bean>
+
+</beans>

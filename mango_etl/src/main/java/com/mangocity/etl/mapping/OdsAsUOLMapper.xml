@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">  
+<mapper namespace="com.mangocity.etl.dao.OdsAsUOLMapper" >  
+  
+    <resultMap type="com.mangocity.etl.vo.OdsAsUOLVo" id="odsAsUOLMap">  
+        <id property="sourcerowid" column="sourcerowid"/>  
+        <result property="userOperationDt" column="userOperationDt"/>  
+        <result property="userOperationTypeId" column="userOperationTypeId"/>  
+        <result property="webpagetypeid" column="webpagetypeid"/>  
+        <result property="mbrid" column="mbrid"/>  
+        <result property="sessionid" column="sessionid"/>  
+        <result property="mangouid" column="mangouid"/>  
+        <result property="channel" column="channel"/>  
+        <result property="sourcesType" column="sourcestype"/>  
+        <result property="siteType" column="sitetype"/>  
+        <result property="pvurl" column="pvurl"/>  
+        <result property="url" column="url"/> 
+        <result property="pageTitle" column="pagetitle"/>   
+        <result property="ip" column="ip"/>  
+        <result property="cityname" column="browermodel"/>  
+        <result property="language" column="language"/>  
+        <result property="browermodel" column="browermodel"/>  
+        <result property="systemmodel" column="systemmodel"/>  
+        <result property="machinetype" column="machinetype"/> 
+        <result property="searchkeywords" column="searchkeywords"/> 
+        <result property="refer" column="refer"/> 
+        <result property="sdtRefer" column="sdtrefer"/>
+        <result property="sid" column="sid"/> 
+        <result property="suid" column="suid"/> 
+        <result property="projectID" column="projectID"/> 
+        <result property="searchword" column="searchword"/> 
+        <result property="utm_term" column="utm_term"/> 
+        <result property="utm_source" column="utm_source"/> 
+        <result property="utm_medium" column="utm_medium"/> 
+        <result property="productid" column="productid"/> 
+        <result property="orderCd" column="orderCd"/> 
+        <result property="sourceRowCreateDt" column="sourceRowCreateDt"/> 
+        <result property="operationDayDt" column="operationDayDt"/> 
+        <result property="operationDayD" column="operationDayD"/> 
+        <result property="operationYear" column="operationYear"/> 
+        <result property="operationMonth" column="operationMonth"/> 
+        <result property="operationDay" column="operationDay"/> 
+        <result property="operationHour" column="operationHour"/> 
+        <result property="etl_load_tag" column="etl_load_tag"/> 
+        <result property="etl_insert_dt" column="etl_insert_dt"/> 
+        <result property="etl_update_dt" column="etl_update_dt"/> 
+        
+        <result property="still_time" column="still_time"/>
+        <result property="focus_time" column="focus_time"/>
+        <result property="user_agent" column="user_agent"/>
+        <result property="color_depth" column="color_depth"/>
+        <result property="ms" column="ms"/>
+        <result property="operation_ms" column="operation_ms"/>
+    </resultMap>  
+    
+    <sql id="cols">
+          sourcerowid, useroperationdt, useroperationtypeid, webpagetypeid, mbrid, sessionid, mangouid, channel, sourcestype,sitetype,pvurl, url, pageTitle,ip , cityname, language, 
+          browermodel, systemmodel, machinetype, searchkeywords, refer, sdtrefer,sid, suid, projectid, searchword, utm_term,utm_source,utm_medium, productid, ordercd,  
+          sourcerowcreatedt, operationdaydt,operationdayd ,operationyear, operationmonth, operationday, operationhour, etl_load_tag, etl_insert_dt, etl_update_dt,still_time,focus_time,
+          still_time,focus_time,user_agent,color_depth,ms,operation_ms
+    </sql>
+    <!--  <sql id="cols">
+          sourcerowid, useroperationdt, useroperationtypeid, webpagetypeid, mbrid, sessionid, mangouid, channel, pvurl, url, ip , cityname, language, 
+          browermodel, systemmodel, machinetype, searchkeywords, refer, sid, projectid, searchword, utm_term,utm_source,utm_medium, productid, ordercd,  
+          sourcerowcreatedt, operationdaydt,operationdayd ,operationyear, operationmonth, operationday, operationhour, etl_load_tag, etl_insert_dt, etl_update_dt
+    </sql> -->
+    
+    <sql id="cols_value">
+         #{sourceRowId}, #{userOperationDt}, #{userOperationTypeId}, #{webpagetypeid}, #{mbrid}, #{sessionid}, #{mangouid}, #{channel}, #{sourcesType},#{siteType},
+		 #{pvurl}, #{url},#{pageTitle}, #{ip}, #{cityname}, #{language}, #{browermodel}, #{systemmodel}, #{machinetype}, #{searchkeywords}, #{refer}, #{sdtRefer},#{sid}, #{suid}, 	   
+         #{projectID}, #{searchword}, #{utm_term}, #{utm_source}, #{utm_medium}, #{productid}, #{orderCd}, #{sourceRowCreateDt}, #{operationDayDt},#{operationDayD}, #{operationYear}, #{operationMonth}, 
+         #{operationDay}, #{operationHour}, #{etl_load_tag}, #{etl_insert_dt}, #{etl_update_dt},#{still_time},#{focus_time},#{user_agent},#{color_depth},#{ms},#{operation_ms}
+    </sql>
+    <sql id="cols_value_batch">
+	#{item.sourceRowId,jdbcType=NUMERIC}, 
+	#{item.userOperationDt,jdbcType=TIMESTAMP}, 
+	#{item.userOperationTypeId,jdbcType=INTEGER}, 
+	#{item.webpagetypeid,jdbcType=INTEGER}, 
+	#{item.mbrid,jdbcType=INTEGER}, 
+	#{item.sessionid,jdbcType=VARCHAR}, 
+	#{item.mangouid,jdbcType=VARCHAR}, 
+	#{item.channel,jdbcType=VARCHAR}, 
+	#{sourcesType,jdbcType=VARCHAR},
+	#{siteType,jdbcType=VARCHAR},
+	#{item.pvurl,jdbcType=VARCHAR},
+	#{item.url,jdbcType=VARCHAR}, 
+	#{item.pageTitle,jdbcType=VARCHAR},
+	#{item.ip,jdbcType=VARCHAR}, 
+	#{item.cityname,jdbcType=VARCHAR},
+	#{item.language,jdbcType=VARCHAR}, 
+	#{item.browermodel,jdbcType=VARCHAR},
+	#{item.systemmodel,jdbcType=VARCHAR},
+	#{item.machinetype,jdbcType=VARCHAR},
+	#{item.searchkeywords,jdbcType=VARCHAR},
+	#{item.refer,jdbcType=VARCHAR},
+	#{item.sdtRefer,jdbcType=VARCHAR},
+	#{item.sid,jdbcType=INTEGER},
+	#{item.suid,jdbcType=INTEGER},
+	#{item.projectID,jdbcType=VARCHAR},
+	#{item.searchword,jdbcType=VARCHAR},
+	#{item.utm_term,jdbcType=VARCHAR},
+	#{item.utm_source,jdbcType=VARCHAR},
+	#{item.utm_medium,jdbcType=VARCHAR},
+	#{item.productid,jdbcType=VARCHAR},
+	#{item.orderCd,jdbcType=VARCHAR},
+	#{item.sourceRowCreateDt,jdbcType=TIMESTAMP},
+	#{item.operationDayDt,jdbcType=BIGINT},
+	#{item.operationDayD,jdbcType=BIGINT},
+	#{item.operationYear,jdbcType=BIGINT},
+	#{item.operationMonth,jdbcType=BIGINT},
+	#{item.operationDay,jdbcType=BIGINT},
+	#{item.operationHour,jdbcType=BIGINT},
+	#{item.etl_load_tag,jdbcType=INTEGER},
+	#{item.etl_insert_dt,jdbcType=TIMESTAMP},
+	#{item.etl_update_dt,jdbcType=TIMESTAMP},
+	#{item.still_time,jdbcType=NUMERIC},
+	#{item.focus_time,jdbcType=NUMERIC},
+	#{item.user_agent,jdbcType=VARCHAR},
+	#{item.color_depth,jdbcType=VARCHAR},
+	#{item.ms,jdbcType=BIGINT},
+	#{item.operation_ms,jdbcType=BIGINT}		
+	</sql>
+    
+    <!-- 新增 -->
+    <insert id="insert" parameterType="com.mangocity.etl.vo.OdsAsUOLVo" >
+        insert into ODS.ODS_AS_UOL(<include refid="cols"/>) values(<include refid="cols_value"/>)
+    </insert>
+	
+	
+	<insert id="batchInsert"  parameterType="java.util.List">  
+	    insert into ODS.ODS_AS_UOL (<include refid="cols"/>) 
+	    <foreach collection="list" item="item" index="index" separator="union all" >  
+	         (select  <include refid="cols_value_batch"/> from dual) 
+	    </foreach>  
+	</insert>  
+ 	
+    <!-- 查询所有 -->  
+    <select id="findAll" resultType="com.mangocity.etl.vo.OdsAsUOLVo" resultMap="odsAsUOLMap">  
+        <![CDATA[  
+            SELECT * from ODS.ODS_AS_UOL
+        ]]>    
+    </select>  
+    
+    <!-- 按条件查询 -->
+    <select id="findById" parameterType="int" resultType="com.mangocity.etl.vo.OdsAsUOLVo">
+        select * from ODS.ODS_AS_UOL where sourcerowid = #{sourcerowid}
+    </select>
+    
+    
+  	<select id="findMaxFieldValue"  >
+        select max('sourcerowid') from ODS.ODS_AS_UOL;
+    </select>
+       
+</mapper>  

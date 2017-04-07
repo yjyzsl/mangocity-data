@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+
+<configuration>
+	<property>
+		<name>mapreduce.jdbc.driver.class</name>
+		<value>oracle.jdbc.driver.OracleDriver</value>
+	</property>
+	
+	<property>
+		<name>mapreduce.jdbc.url</name>
+		<value>jdbc:oracle:thin:@10.10.4.62:1901:HKCTS01</value>
+	</property>
+	
+	<property>
+		<name>mapreduce.jdbc.username</name>
+		<value>lz</value>
+	</property>
+	
+	<property>
+		<name>mapreduce.jdbc.password</name>
+		<value>Lz_Rptstat0527</value>
+	</property>
+
+</configuration>

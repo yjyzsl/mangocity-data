@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<all>
+	<table>
+		<name>lz_user_option_action_log</name>
+		<columns>
+			<column>  
+				<columnName>ip</columnName>  
+				<fieldName>ipaddr</fieldName>  
+				<operation>to_char</operation>  
+			</column>
+			<column>  
+				<columnName>ip</columnName>  
+				<fieldName>ipaddr</fieldName>  
+				<operation>long_to_date</operation>
+				<pattern>yyyy-MM-dd HH:mm:ss</pattern>
+			</column>
+		</columns>
+	</table>
+	
+</all>

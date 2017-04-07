@@ -1,0 +1,40 @@
+{
+		"type": "record",
+		"name": "IntfDspAppOrderInfo",
+		"namespace": "com.mangocity.data.commons.bean",
+		"doc":"离站信息",
+		"fields": [
+			{"name":"sourcerowid","type":["null","long"],"doc":"唯一标识"},
+			{"name":"channel","type":["null","string"],"doc":"当前页面域名"},
+			{"name":"type","type":["null","int"],"doc":"页面操作类型,1-进入页面，2-注册数据,3-点击数据，4-退出页面，5-搜索数据，6-预订数据,7 produect detail,l8 login"},								
+			{"name":"version","type":["null","string"],"doc":"软件版本"},
+			{"name":"accountName","type":["null","string"],"doc":"会员ID,mbrid"},
+			{"name":"deviceId","type":["null","string"],"doc":"设备id"},
+			{"name":"brand","type":["null","string"],"doc":"品牌/  IOS填 Apple"},
+			{"name":"time","type":["null","long"],"doc":"发生时间yyyyMMddhhmmss"},
+				{"name":"goodsNumber","type":["null","string"],"doc":"商品编号"},
+				{"name":"orderNumber","type":["null","string"],"doc":"订单编号"},
+			{"name":"businessChannel","type":["null","string"],"doc":"订单所属业务线：1=跟团游2=自助游3=油轮4=门票5=酒店6=机票7=包团"},
+			{"name":"orderTotal","type":["null","string"],"doc":"订单金额"},
+			{"name":"createOrderStruts","type":["null","int"],"doc":"订单生成状态（1=成功／2=失败／3=预定出现异常）"},
+			{"name":"orderType","type":["null","int"],"doc":"1即时确认订单 ,2非即时确认订单"},
+			{"name":"language","type":["null","string"],"doc":"用户操作系统语言"},
+			{"name":"systemVersion","type":["null","string"]},
+			{"name":"cityName","type":["null","string"],"doc":"城市名称"},
+			{"name":"machinetype","type":["null","string"],"doc":"机型，比如:MI NOTE LET"},
+			{"name":"systemModel","type":["null","string"],"doc":"用户系统类型"},
+			{"name":"sid","type":["null","string"],"doc":"推广渠道ID"},
+			{"name":"Longitude","type":["null","string"],"doc":"经度"},
+			{"name":"Latitude","type":["null","string"],"doc":"纬度"},
+			
+			{"name":"ip","type":["null","string"],"doc":"ip地址"},
+			{"name":"method","type":["null","string"],"doc":"请求方式"},
+			{"name":"uuid","type":["null","string"],"doc":""},
+			
+			{"name":"column_field1","type":["null","string"]},
+			{"name":"column_field2","type":["null","string"]},
+			{"name":"column_field3","type":["null","string"]},
+			{"name":"column_field4","type":["null","string"]},
+			{"name":"column_field5","type":["null","string"]}
+		]
+}

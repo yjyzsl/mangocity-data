@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:aop="http://www.springframework.org/schema/aop"
+    xmlns:tx="http://www.springframework.org/schema/tx"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans 
+                         http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+                         http://www.springframework.org/schema/context
+                         http://www.springframework.org/schema/context/spring-context-4.0.xsd
+                         http://www.springframework.org/schema/tx
+                         http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+                         http://www.springframework.org/schema/aop 
+                         http://www.springframework.org/schema/aop/spring-aop-4.0.xsd"
+                         default-autowire="byName" default-lazy-init="false">
+                       
+	
+	<context:property-placeholder location="classpath:conf/metaq.properties" />
+
+	<!-- message session factory -->
+	<bean id="messageSessionFactory" class="com.taobao.metamorphosis.client.extension.spring.MetaqMessageSessionFactoryBean" destroy-method="destroy">
+		<!-- zookeeper集群地址列表 -->
+		<property name="zkConnect" value="${zkConnect}"/>
+		<!-- zookeeper客户端连接的最大超时时间 -->
+		<property name="zkSessionTimeoutMs" value="${zkSessionTimeoutMs}"/>
+		<!-- 连接zk集群的最大超时时间 -->
+		<property name="zkConnectionTimeoutMs" value="${zkConnectionTimeoutMs}"/>
+		<!-- zookeeper集群内的数据同步最大延迟，这个需要你去测量和估计 -->
+		<property name="zkSyncTimeMs" value="${zkSyncTimeMs}"/>
+	</bean>
+	
+	<!-- 配置一个消息body转换器  -->
+	<!-- <bean id="messageBodyConverter" class="com.taobao.metamorphosis.client.extension.spring.JavaSerializationMessageBodyConverter" /> -->
+	<bean id="messageBodyConverter" class="com.mangocity.data.metaq.StringMessageBodyConverter" />
+
+	<!-- MetaqTemplate用于发送MetaQ消息 -->
+	<bean id="metaqTemplate" class="com.taobao.metamorphosis.client.extension.spring.MetaqTemplate">
+		<property name="messageSessionFactory" ref="messageSessionFactory"/>
+		<property name="messageBodyConverter" ref="messageBodyConverter" />
+		<!-- 共享一个MessageProducer来发送多个topic的消息 -->
+		<!-- <property name="shareProducer" value="true"/> -->
+	</bean>
+	
+	<bean id="producer" class="com.mangocity.data.metaq.MetaqProduceMain">
+		<property name="metaqTemplate"  ref="metaqTemplate"/>
+		<property name="topic"  value="${topicName}"/>
+	</bean>
+	
+	
+	
+
+</beans>

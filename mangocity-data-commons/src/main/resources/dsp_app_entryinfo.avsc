@@ -1,0 +1,37 @@
+{
+		"type": "record",
+		"name": "IntfDspAppEntryInfo",
+		"namespace": "com.mangocity.data.commons.bean",
+		"doc":"进站信息",
+		"fields": [
+			{"name":"sourcerowid","type":["null","long"],"doc":"唯一标识"},
+			{"name":"channel","type":["null","string"],"doc":"当前页面域名"},
+			{"name":"type","type":["null","int"],"doc":"页面操作类型,1-进入页面，2-注册数据,3-点击数据，4-退出页面，5-搜索数据，6-预订数据,7 produect detail,l8 login"},								
+			{"name":"systemVersion","type":["null","string"]},
+			{"name":"version","type":["null","string"],"doc":"软件版本"},
+			{"name":"cityName","type":["null","string"],"doc":"城市名称"},
+			{"name":"machineType","type":["null","string"],"doc":"机型，比如:MI NOTE LET"},
+			{"name":"deviceId","type":["null","string"],"doc":"设备id"},
+			{"name":"brand","type":["null","string"],"doc":"品牌/  IOS填 Apple"},
+			{"name":"systemModel","type":["null","string"],"doc":"用户系统类型"},
+			{"name":"accountName","type":["null","string"],"doc":"会员ID,mbrid"},
+			{"name":"language","type":["null","string"],"doc":"用户操作系统语言"},
+			{"name":"time","type":["null","long"],"doc":"发生时间yyyyMMddhhmmss,operationdt"},
+			{"name":"viewID","type":["null","string"],"doc":"跟团游=vc01"},
+			{"name":"viewName","type":["null","string"],"doc":"页面描述"},
+			{"name":"screenResolution","type":["null","string"],"doc":"分辨率"},
+			{"name":"sid","type":["null","string"],"doc":"推广渠道ID"},
+			{"name":"Longitude","type":["null","string"],"doc":"经度"},
+			{"name":"Latitude","type":["null","string"],"doc":"纬度"},
+			
+			{"name":"ip","type":["null","string"],"doc":"ip地址"},
+			{"name":"method","type":["null","string"],"doc":"请求方式"},
+			{"name":"uuid","type":["null","string"],"doc":""},
+			
+			{"name":"column_field1","type":["null","string"]},
+			{"name":"column_field2","type":["null","string"]},
+			{"name":"column_field3","type":["null","string"]},
+			{"name":"column_field4","type":["null","string"]},
+			{"name":"column_field5","type":["null","string"]}
+		]
+}
